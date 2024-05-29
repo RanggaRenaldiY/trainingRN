@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">YogyaGroupRN</string>
+    <!-- Code Push input key dari App Center -->
+     <string moduleConfig="true" name="CodePushDeploymentKey">a8D00OQW9TLMkUkCpsq4dACbpFs7Ka6geQMoH</string>
+     <!-- End Code Push -->
 </resources>
