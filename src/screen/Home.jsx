@@ -1,9 +1,10 @@
-import {View, Text, Button} from 'react-native';
-import React, {useContext} from 'react';
+import {View, Text, Button, Alert} from 'react-native';
+import React, {useContext, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RootContext} from '../../App';
 import {useSelector, useDispatch} from 'react-redux';
 import {logout} from './store';
+import messaging from '@react-native-firebase/messaging'; //firebase
 
 function HomeScreen({navigation}) {
   // Redux
@@ -32,13 +33,32 @@ function HomeScreen({navigation}) {
     }
   };
 
+  //Call Firebase
+  const getTokenFirebase = async () => {
+    const token = await messaging().getToken();
+    console.log('teks', token);
+  };
+
+  const inAppMsg = () => {
+    messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+  };
+
+  useEffect(() => {
+    getTokenFirebase();
+    inAppMsg();
+  }, []);
+
+  console.log('test');
+
   return (
     <View
       style={{
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'green',
+        backgroundColor: 'blue',
       }}>
       <Text>Home Screen</Text>
       <Text>---Redux--- </Text>
@@ -77,6 +97,21 @@ function HomeScreen({navigation}) {
       <Button
         title="Go to Login React Redux"
         onPress={() => navigation.navigate('LoginRedux')}
+      />
+      <View style={{marginBottom: 10}}></View>
+      <Button
+        title="Go to Midtrans"
+        onPress={() => navigation.navigate('Midtrans')}
+      />
+      <View style={{marginBottom: 10}}></View>
+      <Button
+        title="Go to Create Post WaterMelonDB"
+        onPress={() => navigation.navigate('CreatePost')}
+      />
+      <View style={{marginBottom: 10}}></View>
+      <Button
+        title="Go to List Post WaterMelonDB"
+        onPress={() => navigation.navigate('PostList')}
       />
     </View>
   );

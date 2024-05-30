@@ -10,6 +10,8 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 import com.microsoft.codepush.react.CodePush;
+import com.nozbe.watermelondb.jsi.WatermelonDBJSIPackage; // WaterMelonDB
+import com.facebook.react.bridge.JSIModulePackage; // WaterMelonDB
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,6 +28,13 @@ public class MainApplication extends Application implements ReactApplication {
             return CodePush.getJSBundleFile();
         }
         // End Code Push
+
+        //WatermelonDB
+        @Override
+        protected JSIModulePackage getJSIModulePackage() {
+          return new WatermelonDBJSIPackage(); // ⬅️ This!
+        }
+        // End WatermelinDB
 
         @Override
         protected List<ReactPackage> getPackages() {

@@ -15,6 +15,9 @@ import Auth from './src/screen/Auth';
 import ReduxCounter from './src/screen/ReduxCounter';
 import store from './src/screen/store';
 import LoginRedux from './src/screen/LoginRedux';
+import Midtrans from './src/screen/Midtrans';
+import PostList from './src/watermelon/PostList';
+import CreatePost from './src/watermelon/CreatePost';
 
 // Init Context
 export const RootContext = createContext();
@@ -41,6 +44,9 @@ function App() {
             <Stack.Screen name="Auth" component={Auth} />
             <Stack.Screen name="ReduxCounter" component={ReduxCounter} />
             <Stack.Screen name="LoginRedux" component={LoginRedux} />
+            <Stack.Screen name="Midtrans" component={Midtrans} />
+            <Stack.Screen name="PostList" component={PostList} />
+            <Stack.Screen name="CreatePost" component={CreatePost} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
